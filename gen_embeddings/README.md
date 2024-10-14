@@ -15,7 +15,7 @@ This script processes DNA sequences from `.fasta.gz` files, generates embeddings
 ### Single GPU
 
 ```bash
-python script_name.py --device_id 0 --root_dir /path/to/fasta/files --save_dir /path/to/save/embeddings --num_parts 1 --part_id 0
+python gen_embeddings.py --device_id 0 --root_dir /path/to/fasta/files --save_dir /path/to/save/embeddings --num_parts 1 --part_id 0
 ```
 
 ### Multiple GPUs
@@ -24,10 +24,10 @@ For 2 GPUs:
 
 ```bash
 # GPU 0
-python script_name.py --device_id 0 --root_dir /path/to/fasta/files --save_dir /path/to/save/embeddings --num_parts 2 --part_id 0
+python gen_embeddings.py --device_id 0 --root_dir /path/to/fasta/files --save_dir /path/to/save/embeddings --num_parts 2 --part_id 0
 
 # GPU 1
-python script_name.py --device_id 1 --root_dir /path/to/fasta/files --save_dir /path/to/save/embeddings --num_parts 2 --part_id 1
+python gen_embeddings.py --device_id 1 --root_dir /path/to/fasta/files --save_dir /path/to/save/embeddings --num_parts 2 --part_id 1
 ```
 
 You can adjust `--num_parts` and `--part_id` based on the number of GPUs.
