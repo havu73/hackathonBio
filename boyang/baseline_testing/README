@@ -1,0 +1,4 @@
+Step 1: gather example positive/ negative base-pairs
+Step 2: exploring different embedding strategies (Tung's default embedding/ trimed embeddings) 
+    Explore the chunk size hyperparameters
+Step 3: compare different strategies. 
