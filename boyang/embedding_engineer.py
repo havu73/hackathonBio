@@ -22,7 +22,7 @@ host_list = os.listdir(host_emb_path)
 meta_df = pd.read_csv('/home/ec2-user/vibrio_data/pairs_positive.txt',sep='\t')
 
 # %%
-############## add the embeddings  ##############
+############## add the embeddings -- inter-species summation + concatenation  ##############
 positive_pair_embeddings = []
 indicators = []
 for i in range(meta_df.shape[0]):
