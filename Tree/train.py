@@ -214,7 +214,8 @@ if __name__ == '__main__':
         n_jobs=5,  
         random_state=42
     )
-    
+    # fit model
+
     start_time = time()
     random_search.fit(combined_pair_embeddings, indicators)
     bst = random_search.best_estimator_
@@ -224,54 +225,7 @@ if __name__ == '__main__':
     minutes = int(time_taken // 60)
     seconds = int(time_taken % 60)
     print(f"Time taken for RandomizedSearchCV: {minutes} minutes and {seconds} seconds")
-    # fit model
-    ###################### train val single split ##################
-    X_train, X_val, y_train, y_val = train_test_split(combined_pair_embeddings,indicators)
-    print(f'Split the data into {X_train.shape[0]} train set and {X_val.shape[0]} test set')
-
-
-    preds = bst.predict(X_val)
-
-    score = accuracy_score(y_val,preds)
-    print(f'accuracy score on test set: {score}')
-
-    # %%
-    from sklearn.metrics import roc_curve, roc_auc_score, precision_recall_curve, average_precision_score
-    preds_proba = bst.predict_proba(X_val)[:, 1]  # probability for class 1
-    fpr, tpr, thresholds = roc_curve(y_val, preds_proba)
-
-    # Compute AUC
-    auc_score = roc_auc_score(y_val, preds_proba)
-    print(f'AUC score: {auc_score}')
-    plt.figure()
-    plt.plot(fpr, tpr, color='blue', lw=2, label=f'ROC curve (AUC = {auc_score:.2f})')
-    plt.plot([0, 1], [0, 1], color='red', linestyle='--')  # diagonal line
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.0])
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.title('Receiver Operating Characteristic (ROC) Curve')
-    plt.legend(loc="lower right")
-    plt.show()
-
-    # %%
-    precision, recall, thresholds = precision_recall_curve(y_val, preds_proba)
-
-    # Compute average precision score
-    ap_score = average_precision_score(y_val, preds_proba)
-    print(f'Average precision score: {ap_score}')
-
-    # Plot Precision-Recall curve
-    plt.figure()
-    plt.plot(recall, precision, color='blue', lw=2, label=f'PR curve (AP = {ap_score:.2f})')
-    plt.xlabel('Recall')
-    plt.ylabel('Precision')
-    plt.title('Precision-Recall Curve')
-    plt.legend(loc="lower left")
-    plt.show()
-    # %%
-    ###################### train val single split ##################
-
+    
 
     #### Testing part #####
     
