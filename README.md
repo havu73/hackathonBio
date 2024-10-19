@@ -1,5 +1,3 @@
-# hackathonBio
-
 # PhageBook - BioML Hackathon Project
 
 **Team Name:** PhageBook
