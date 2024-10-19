@@ -11,14 +11,13 @@
 # Table of Contents
 1. Introduction 
 2. Problem Statement   
-3. Approach
-4. Data Collection and Processing
-5. Modeling and Prediction
-6. Results and Evaluation
-7. Challenges Faced
-8. Conclusion
-9. Future Work
-10. Team Members
+3. Data Collection and Processing
+4. Modeling and Prediction
+5. Results and Evaluation
+6. Challenges Faced
+7. Conclusion
+8. Future Work
+9. Team Members
 
 # 1. Introduction
 PhageBook is an innovative platform designed to predict phage-bacteria host interactions using evolutionary models. By leveraging the Evo framework, we aim to design phage-based solutions that combat antibiotic-resistant bacteria.
@@ -26,9 +25,7 @@ PhageBook is an innovative platform designed to predict phage-bacteria host inte
 # 2. Problem Statement
 The increasing prevalence of antibiotic-resistant bacteria is a global health concern. Current antibiotics are becoming less effective, and there is an urgent need for novel therapeutic solutions. Phage therapy offers a promising alternative by using viruses that specifically target and kill bacteria. However, identifying the right phage for a given bacterial strain remains challenging. PhageBook aims to address this by predicting phage-bacteria host interactions.
 
-# 3. Approach
-
-# 4. Data Collection and Processing
+# 3. Data Collection and Processing
 We used several publicly available datasets for phage-host pairs. Key steps in data collection and processing include: 
 Phage and Bacterial Data: We collected four experimentally validated datasets (PhagesDB, Klebsiella, Vibrio, and E. coli) and one with predicted pairs (PhageScope). 
 
@@ -49,6 +46,15 @@ Phage and Bacterial Data: We collected four experimentally validated datasets (P
 ### 5.2. Modeling
 
 # 6. Results and Evaluation
+## E.coli models
+<img align="center" src="figures/ecoli_evaluation.png" alt="Project" width="500">
+
+## Vibrio models
+<img align="center" src="figures/vibrio_evaluation.png" alt="Project" width="500">
+
+## Klebsiella models
+<img align="center" src="figures/klebsiella_evaluation.png" alt="Project" width="500">
+
 # 7. Challenges Faced
 
 # 8. Conclusions
