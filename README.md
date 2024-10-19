@@ -68,7 +68,7 @@ Phage and Bacterial Data: We collected four experimentally validated datasets (P
 * Data curation and domain knowledge
 
 **Boyang Fu:** PhD Candidate, UCLA
-* Model training
+* Embedding engineering, Model training
   
 **Emily Maciejewski:** PhD Candidate, UCLA
 * Model training
@@ -77,7 +77,7 @@ Phage and Bacterial Data: We collected four experimentally validated datasets (P
 * Model training
   
 **Tung Nguyen:** PhD Candidate, UCLA
-* Feature extraction, model training
+* Infrastructure setup, Feature extraction, Model training
   
 **Cindy K. Pino:** PhD Candidate, UCSF/UCB/Gladstone Institutes
 * Data curation and domain knowledge
