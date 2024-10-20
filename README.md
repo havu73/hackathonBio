@@ -7,7 +7,7 @@
 **Goal:** Utilizing Evo to predict phage-bacteria host interactions for antibiotic design.
 
 # Table of Contents
-1. Background & Relevance
+1. [Background & Relevance](#1-background--relevance)
 2. Methodology
     * Data Collection and Processing
     * Modeling and Prediction
