@@ -59,12 +59,10 @@ All of these models were trained using one V100-16GB GPU on a p3.16xlarge on AWS
 
 # 3. Results and Evaluation
 
-### 3.1 Evaluation
+### 3.1 Model Performance
 
 For each dataset (e.g., Klebsiella, Vibrio, and E. coli), our predictions were evaluated against a common set of ground truth datasets, which contained the columns Phage_ID, Host_ID, and prediction to denote positive and negative pairs. 
 For the evaluation of our models, we used standard metrics for binary classification tasks, focusing on Precision-Recall Curves (PRC) and Receiver Operating Characteristic (ROC) Curves. The PRC AUC (Area Under the Curve) provided a summary of the precision-recall tradeoff, particularly useful in our unbalanced datasets, with higher values indicating better performance. ROC AUC measured how well the model distinguished between positive and negative classes, with the Chance Line included as a baseline for comparison. We evaluated several models, including XGBoost, CNN, K-mer Baseline, and Transformer, ranking them based on PRC AUC, which was prioritized due to the class imbalance in our data.
-
-### 3.2 Results
 
 Below are the Precision-Recall and ROC curves for each dataset tested. For the Vibrio and E. coli datasets, the Transformer Classifier achieved the highest performance with AUC of 0.97 and 0.87, respectively, followed by KGBoost and CNN. XGBoost achieved the highest AUC of 0.75 for the Klebsiella dataset. We use Precision-Recall as a main metric to pick the best model, because it is less sensitive to the labels imbalance that is a common feature of all our datasets.
 
@@ -76,6 +74,8 @@ Below are the Precision-Recall and ROC curves for each dataset tested. For the V
 
 ### Klebsiella models
 <img align="center" src="figures/klebsiella_evaluation.png" alt="Project" width="500">
+
+### 3.2 Demo
 
 We also provide a [demo](https://6b0fbc27cf15dd75ec.gradio.live/) that allows to query bacterial strains in our current collection against a set of phages. It allows users to pick the phage that will be able to kill given bacteria. In the future we plan to extend its functionality by enabling the users to provide the sequence of their clinical isolate and we will provide a set of predicted known phages that might be able to target this bacteria.
 
