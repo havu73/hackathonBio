@@ -22,7 +22,7 @@
 6. Team Members
 
 # Abstract
-PhageBook is an innovative platform developed during a **10-day hackathon** to address the urgent challenge of antibiotic-resistant bacteria. By leveraging evolutionary models and cutting-edge machine learning techniques, **PhageBook accurately predicts phage-bacteria host interactions**, a crucial step toward designing effective phage therapies. Our models, trained on newly available experimental datasets, achieved impressive results, **with AUC values as high as 0.97**, demonstrating their potential to streamline phage therapy development.
+**PhageBook** is an innovative platform developed during a **10-day hackathon** to address the urgent challenge of antibiotic-resistant bacteria. By leveraging evolutionary models and cutting-edge machine learning techniques, **PhageBook accurately predicts phage-bacteria host interactions**, a crucial step toward designing effective phage therapies. Our models, trained on newly available experimental datasets, achieved impressive results, **with AUC values as high as 0.97**, demonstrating their potential to streamline phage therapy development.
 
 As part of this project, we provide a live tool [demo](https://6b0fbc27cf15dd75ec.gradio.live/), where users can query bacterial strains against a set of phages and identify potential matches. Future versions of the tool will allow users to input clinical bacterial isolate sequences for real-time phage predictions. PhageBook is open-source, and with further optimization, it has the potential to revolutionize the way phage therapies are developed.
 
@@ -109,9 +109,9 @@ In the current training under this model, negative pair examples were chosen to 
 
 Our future work will focus on expanding the dataset to include more diverse bacterial species, optimizing the models for faster processing, and finetuning the Evo model to increase its predictive power. Additionally, we aim to expand on our user-friendly interface for broader accessibility.
 
-Building on the success of extracting whole-genome sequence from pahge-host pairs, the next step is to incorporate protein sequence data embeddings using the advanced [**ESM3**](https://www.evolutionaryscale.ai/blog/esm3-release) model. The ESM3 model is a large-scale protein langugage model trained on a vast dataset of protein sequences, which allows it to capture intricate structural and functional information at both residue and sequence levels.
+Building on the success of extracting whole-genome sequence from pahge-host pairs, the next step is to incorporate protein sequence data embeddings. Using the advanced [**ESM3**](https://www.evolutionaryscale.ai/blog/esm3-release) model, a large-scale protein langugage model trained on a vast dataset of protein sequences, will allow us to capture intricate structural and functional information at both residue and sequence levels.
 
-Integrating protein sequence sform phage-host pairs with ESM3 will allow us to explore phage-host interactions at a mode granular level, particularly by analysing protein-protein interactions that may drive host specificity and viral infectivity. this will provide deeper insights unto how phages target specific bacteria proteins, potetnially revealing new therapeutic targets. 
+Integrating protein sequence sform phage-host pairs with ESM3 will allow us to explore phage-host interactions at a mode granular level, particularly by analysing protein-protein interactions that may drive host specificity and viral infectivity. This will provide deeper insights unto how phages target specific bacteria proteins, potentially revealing new therapeutic targets. 
 
 By combining both whole-genome and portein sequence data, we will gain more comprehensive understading of phage-host dynamics. This dual approach will enhance the accuracy of our predictions and expand the versatility of **PhageBook**, allowing it to predict interactions across various biological levels, from genomic signals to proteins mechanisms. This coudl open the door to more precise phage therapises, tailored not just to the bacterial species but to specific protein targets, pushing the boundaries of personalize medicine in the tratment of resistwent infections. 
 
@@ -128,7 +128,8 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Ha Vu:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
-    <strong>Role: Team Lead,</strong> pipeline construction, feature extraction
+    <strong>Role: Team Lead,</strong> pipeline construction, feature extraction<br>
+    <a href="https://www.linkedin.com/in/ha-vu-profile/" target="_blank">LinkedIn Profile</a>
   </div>
 </div>
 
@@ -176,7 +177,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member7.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Cindy K. Pino:</strong> PhD Student, UCSF/UCB/Gladstone Institutes<br>
-    <strong>Role:</strong> Data curation and domain knowledge
+    <strong>Role:</strong> Data curation, domain knowledge, model evaluator
   </div>
 </div>
   
