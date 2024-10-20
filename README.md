@@ -146,7 +146,7 @@ Our work provides a foundation for future research into phage therapy as a viabl
   <img src="figures/Member6.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Tung Nguyen:</strong> PhD Student, UCLA/Google DeepMind<br>
-    <strong>Role:</strong> Feature extraction, model training
+    <strong>Role:</strong> Infrastructure setup, feature extraction, model training
   </div>
 </div>
 
