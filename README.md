@@ -27,7 +27,7 @@ PhageBook is an innovative platform developed during a 10-day hackathon to addre
 As part of this project, we provide a live tool [demo](https://6b0fbc27cf15dd75ec.gradio.live/), where users can query bacterial strains against a set of phages and identify potential matches. Future versions of the tool will allow users to input clinical bacterial isolate sequences for real-time phage predictions. PhageBook is open-source, and with further optimization, it has the potential to revolutionize the way phage therapies are developed.
 
 # 1. Background & Relevance
-The increasing prevalence of antibiotic-resistant bacteria is a global health concern. Current antibiotics are becoming less effective, and there is an urgent need for novel therapeutic solutions. Phage therapy offers a promising alternative by using viruses that specifically target and kill bacteria. However, identifying the right phage for a given bacterial strain remains challenging. **PhageBook** aims to address this by leveraging the recently collected experimental data and state-of-the-art machine learning approaches to accurately predict phage-bacteria host interactions.
+The rise of antibiotic-resistance bacteria is a global health crisis, with the CDC identifying antimicrobial resistance as a major thread.[1](https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html)
 
 # 2. Methodology
 
