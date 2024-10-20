@@ -25,7 +25,7 @@
 # Abstract
 **PhageBook** is an innovative platform developed during a **10-day hackathon** to address the urgent challenge of antibiotic-resistant bacteria. By leveraging evolutionary models and cutting-edge machine learning techniques, **PhageBook accurately predicts phage-bacteria host interactions**, a crucial step toward designing effective phage therapies. Our models, trained on newly available experimental datasets, achieved impressive results, **with AUC values as high as 0.97**, demonstrating their potential to streamline phage therapy development.
 
-As part of this project, we provide a live tool [demo](https://6b0fbc27cf15dd75ec.gradio.live/), where users can query bacterial strains against a set of phages and identify potential matches. Future versions of the tool will allow users to input clinical bacterial isolate sequences for real-time phage predictions. PhageBook is open-source, and with further optimization, it has the potential to revolutionize the way phage therapies are developed.
+As part of this project, we provide a live tool [demo](https://0bca511e83b482da4f.gradio.live/), where users can query bacterial strains against a set of phages and identify potential matches. Future versions of the tool will allow users to input clinical bacterial isolate sequences for real-time phage predictions. PhageBook is open-source, and with further optimization, it has the potential to revolutionize the way phage therapies are developed.
 
 # 1. Background & Relevance
 The rise of antibiotic-resistance bacteria is a global health crisis, with the CDC identifying antimicrobial resistance as a major thread [1](https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html). As antibiotics lose effectiveness, the need for new therapies has become urgent. Phage therapy, which uses bacteriophages to target and kill bacteria, offers a promising alternative [2](https://pmc.ncbi.nlm.nih.gov/articles/PMC5547374/). However, scaling phage therapy is hindered by the time-consuming and expensive process of matching the right phage to each bacterial strain, requiring extensive lab testing and specialized facilities [3](https://pmc.ncbi.nlm.nih.gov/articles/PMC10747886/). 
@@ -85,7 +85,7 @@ Below are the Precision-Recall and ROC curves for each dataset tested. For the _
 
 ### 3.2 Demo
 
-We also provide a [demo](https://6b0fbc27cf15dd75ec.gradio.live/) that allows to query bacterial strains in our current collection against a set of phages. It allows users to pick the phage that will be able to kill given bacteria. In the future we plan to extend its functionality by enabling the users to provide the sequence of their clinical isolate and we will provide a set of predicted known phages that might be able to target this bacteria.
+We also provide a [demo](https://0bca511e83b482da4f.gradio.live/) that allows to query bacterial strains in our current collection against a set of phages. It allows users to pick the phage that will be able to kill given bacteria. In the future we plan to extend its functionality by enabling the users to provide the sequence of their clinical isolate and we will provide a set of predicted known phages that might be able to target this bacteria.
 
 # 4. Interpretation
 
