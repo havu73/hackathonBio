@@ -109,7 +109,7 @@ In the current training under this model, negative pair examples were chosen to 
 
 Our future work will focus on expanding the dataset to include more diverse bacterial species, optimizing the models for faster processing, and finetuning the Evo model to increase its predictive power. Additionally, we aim to expand on our user-friendly interface for broader accessibility.
 
-Building on the success of extracting whole-genome sequence from pahge-host pairs, the next step is to incorporate protein sequence data embeddings using the advanced ESM3 model. The ESM3 model is a large-scale protein langugage model trained on a vast dataset of protein sequences, which allows it to capture intricate structural and functional information at both residue and sequence levels.
+Building on the success of extracting whole-genome sequence from pahge-host pairs, the next step is to incorporate protein sequence data embeddings using the advanced [**ESM3**](https://www.evolutionaryscale.ai/blog/esm3-release) model. The ESM3 model is a large-scale protein langugage model trained on a vast dataset of protein sequences, which allows it to capture intricate structural and functional information at both residue and sequence levels.
 
 Integrating protein sequence sform phage-host pairs with ESM3 will allow us to explore phage-host interactions at a mode granular level, particularly by analysing protein-protein interactions that may drive host specificity and viral infectivity. this will provide deeper insights unto how phages target specific bacteria proteins, potetnially revealing new therapeutic targets. 
 
