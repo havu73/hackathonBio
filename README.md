@@ -27,7 +27,11 @@ PhageBook is an innovative platform developed during a 10-day hackathon to addre
 As part of this project, we provide a live tool [demo](https://6b0fbc27cf15dd75ec.gradio.live/), where users can query bacterial strains against a set of phages and identify potential matches. Future versions of the tool will allow users to input clinical bacterial isolate sequences for real-time phage predictions. PhageBook is open-source, and with further optimization, it has the potential to revolutionize the way phage therapies are developed.
 
 # 1. Background & Relevance
-The rise of antibiotic-resistance bacteria is a global health crisis, with the CDC identifying antimicrobial resistance as a major thread.[1](https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html)
+The rise of antibiotic-resistance bacteria is a global health crisis, with the CDC identifying antimicrobial resistance as a major thread[1](https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html). As antibiotics lose effectiveness, the need for new therapies has become urgent. Phage therapy, which uses bacteriophages to trget and kill bacteria, offers a promising alternative. However, scaling phage therapy is hindered by the time-consuming and expensive process of matching the right phage to each bacterial strain, requiring extensive lab testing and specialized facilities. 
+
+Computational tools have begin to streamline this process by predicting phage-host interactions suign genome data. **PhageBook** advances this efforts by leveraging experimentally validated datasets and state-of-the-art machine learning models like **EVO** and **transformers** to accurately predict phage-bacteria ineractions. This approach significantly reduces the time and cost of developing phage therapies, enabling faster clinical application. 
+
+Unlike traditional methodsm which requires labor-intensive genome annotation to identify potential pahge-host machtches, **PhageBook** uses readily available genome-wide data. This not only simplifiess the process but achies accuracy comparable to expert-driven emthods, providing an efficient and accessible solution to fighting anctibiotic resistance. 
 
 # 2. Methodology
 
