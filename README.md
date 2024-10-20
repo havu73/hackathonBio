@@ -96,9 +96,11 @@ One major challenge was handling the computational load when running Evo and ESM
 
 * __Challenges of the data collection:__ Some datasets had missing data for phage-bacterial pairs and included phages or bacterial hosts that were not matched to their counterparts (the learning task for these is trivial). In addition, we discovered that not all genome sequences were made publicly available by the authors, so we had to carefully curate these datasets. 
 
+* __Challenges of embedding engineering:__ Initially, it was unclear how to best combine phage and host embeddings. Due to the resource intensity of generating Evo embeddings, we opted for post-hoc embedding engineering. Visualizations revealed that while concatenation and padding were effective, alternative methods like embedding summation captured additional sequence-length information, yielding better results. Ultimately, we employed different strategies across various model trainings.
+
 * __Challenges of Transformer:__
 
-* __Challenges of XGBoost:__
+* __Challenges of XGBoost:__ A key challenge with tree-based models is converting unstructured embeddings into structured tabular data, as discussed in the embedding engineering section. Additionally, the time complexity of thorough hyperparameter searches posed difficulties. To address this, we switched to LightGBM for more efficient training, while maintaining the name "XGBoost" for consistency.
 
 * __Challenges of CNN model:__ Challenges with the CNN model include padding inputs to maintain similar input dimensions. This increases memory requirement and better engineering for data loaders. In addition, for short sequences of bacteria and phages, the padded tokens introduce substantial artifacts in the input and potentially weaken the signals.
 In the current training under this model, negative pair examples were chosen to be twice the number of positive pairs and fixed during training. In the future, a random sampling of negative pairs could be more desirable as the model is exposed to more negative pairs while maintaining a good positive/negative label ratio.
