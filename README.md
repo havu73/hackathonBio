@@ -8,18 +8,19 @@
 
 # Table of Contents
 1. [Background & Relevance](#1-background--relevance)
-2. Methodology
-    * Data Collection and Processing
-    * Modeling and Prediction
-3. Results and Evaluation
-    * Model performance
-    * Demo
-4. Interpretation
-    * Challenges Faced
-    * Conclusion
-    *  Future Work
-5. Potential impact
-6. Team Members
+2. [Methodology](#2-methodology)
+    * [Data Collection and Processing](#21-data-collection-and-processing)
+    * [Feature Extraction](#22-feature-extraction)
+    * [Modeling](#23-modeling)
+3. [Results and Evaluation](#3-results-and-evaluation)
+    * [Model Performance](#31-model-performance)
+    * [Demo](#32-demo)
+4. [Interpretation](#4-interpretation)
+    * [Conclusions](#41-conclusions)
+    * [Challenges Faced](#42-challenges-faced)
+    * [Future Work](#43-future-work---evo-and-esm3-models)
+5. [Potential impact](#5-potential-impact)
+6. [Team Members](#6-team-members)
 
 # Abstract
 **PhageBook** is an innovative platform developed during a **10-day hackathon** to address the urgent challenge of antibiotic-resistant bacteria. By leveraging evolutionary models and cutting-edge machine learning techniques, **PhageBook accurately predicts phage-bacteria host interactions**, a crucial step toward designing effective phage therapies. Our models, trained on newly available experimental datasets, achieved impressive results, **with AUC values as high as 0.97**, demonstrating their potential to streamline phage therapy development.
