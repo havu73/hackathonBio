@@ -111,7 +111,7 @@ Our work provides a foundation for future research into phage therapy as a viabl
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
-  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <img src="figures/Member2.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Veronika Dubinkina:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
     <strong>Role:</strong> Data curation and domain knowledge
@@ -119,7 +119,7 @@ Our work provides a foundation for future research into phage therapy as a viabl
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
-  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <img src="figures/Member3.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Boyang Fu:</strong> PhD Student, UCLA<br>
     <strong>Role:</strong> Model training
@@ -127,7 +127,7 @@ Our work provides a foundation for future research into phage therapy as a viabl
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
-  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <img src="figures/Member4.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Emily Maciejewski:</strong> PhD Student, UCLA<br>
     <strong>Role:</strong> Model training
@@ -135,7 +135,7 @@ Our work provides a foundation for future research into phage therapy as a viabl
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
-  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <img src="figures/Member5.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Khoa Hoang:</strong> PhD Student, Stanford<br>
     <strong>Role:</strong> Model training
@@ -143,7 +143,7 @@ Our work provides a foundation for future research into phage therapy as a viabl
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
-  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <img src="figures/Member6.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Tung Nguyen:</strong> PhD Student, UCLA/Google DeepMind<br>
     <strong>Role:</strong> Feature extraction, model training
@@ -151,7 +151,7 @@ Our work provides a foundation for future research into phage therapy as a viabl
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
-  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <img src="figures/Member7.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Cindy K. Pino:</strong> PhD Student, UCSF/UCB/Gladstone Institutes<br>
     <strong>Role:</strong> Data curation and domain knowledge
