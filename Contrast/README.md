@@ -6,7 +6,9 @@ The contrastive learning model consists of a CNN encoder and a contrastive loss.
 
 The contrastive loss is trained using a set of positive phage-host pairs. All potential phage-host pairs not represented in the postive set are considered negative examples. For each phage-host pair, the contrastive loss computes the distance between the encoded pahge and encoded host. The loss attempts to minimize the distance between positive pairs and ensure that negatie pairs are farther than a given margin away.
 
-![CNN model architecture](./model.png)
+<div style="text-align: center;">
+    <img src="./model.png" alt="Contrastive Learning Architecture" width="300"/>
+</div>
 
 ### Usage
 
