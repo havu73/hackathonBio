@@ -102,27 +102,59 @@ Our work provides a foundation for future research into phage therapy as a viabl
 
 # 6. Team Members
 
-**Ha Vu:** Postdoctoral Scholar, Gladstone Institutes
-* **Team lead,** pipeline construction, feature extraction
+<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px;">
+  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <div>
+    <strong>Ha Vu:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
+    <strong>Role: Team Lead,</strong> pipeline construction, feature extraction
+  </div>
+</div>
 
-**Veronika Dubinkina:** Bioinformatics fellow, Gladstone Institutes
-* Data curation and domain knowledge
+<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
+  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <div>
+    <strong>Veronika Dubinkina:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
+    <strong>Role:</strong> Data curation and domain knowledge
+  </div>
+</div>
 
-**Boyang Fu:** PhD Candidate, UCLA
-* Model training
+<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
+  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <div>
+    <strong>Boyang Fu:</strong> PhD Student, UCLA<br>
+    <strong>Role:</strong> Model training
+  </div>
+</div>
+
+<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
+  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <div>
+    <strong>Emily Maciejewski:</strong> PhD Student, UCLA<br>
+    <strong>Role:</strong> Model training
+  </div>
+</div>
+
+<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
+  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <div>
+    <strong>Khoa Hoang:</strong> PhD Student, Stanford<br>
+    <strong>Role:</strong> Model training
+  </div>
+</div>
+
+<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
+  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <div>
+    <strong>Tung Nguyen:</strong> PhD Student, UCLA/Google DeepMind<br>
+    <strong>Role:</strong> Feature extraction, model training
+  </div>
+</div>
+
+<div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
+  <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
+  <div>
+    <strong>Cindy K. Pino:</strong> PhD Student, UCSF/UCB/Gladstone Institutes<br>
+    <strong>Role:</strong> Data curation and domain knowledge
+  </div>
+</div>
   
-**Emily Maciejewski:** PhD Candidate, UCLA
-* Model training
-  
-**Khoa Hoang:** PhD Student, Stanford
-* Model training
-  
-**Tung Nguyen:** PhD Candidate, UCLA
-* Feature extraction, model training
-  
-**Cindy K. Pino:** PhD Candidate, UCSF/UCB/Gladstone Institutes
-* Data curation and domain knowledge
-
-
-
-
