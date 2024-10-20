@@ -137,7 +137,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member2.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Veronika Dubinkina:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
-    <strong>Role:</strong> Data curation and domain knowledge
+    <strong>Role:</strong> Data curation and domain knowledge<br>
     <a href="https://www.linkedin.com/in/veronika-dubinkina/" target="_blank">Veronika Dubinkina</a>
   </div>
 </div>
@@ -146,7 +146,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member3.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Boyang Fu:</strong> PhD Student, UCLA<br>
-    <strong>Role:</strong> Model training
+    <strong>Role:</strong> Model training<br>
     <a href="https://www.linkedin.com/in/boyang-fu/" target="_blank">Boyang Fu</a>
   </div>
 </div>
@@ -155,7 +155,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member4.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Emily Maciejewski:</strong> PhD Student, UCLA<br>
-    <strong>Role:</strong> Model training
+    <strong>Role:</strong> Model training<br>
     <a href="https://www.linkedin.com/in/emilymaciejewski/" target="_blank">Emily Maciejewski</a>
   </div>
 </div>
@@ -164,7 +164,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member5.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Khoa Hoang:</strong> PhD Student, Stanford<br>
-    <strong>Role:</strong> Model training
+    <strong>Role:</strong> Model training<br>
     <a href="https://www.linkedin.com/in/khoa-hoang-babb30172/" target="_blank">Khoa Hoang</a>
   </div>
 </div>
@@ -173,7 +173,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member6.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Tung Nguyen:</strong> PhD Student, UCLA/Google DeepMind<br>
-    <strong>Role:</strong> Infrastructure setup, feature extraction, model training
+    <strong>Role:</strong> Infrastructure setup, feature extraction, model training<br>
     <a href="https://www.linkedin.com/in/tung-nguyen-40703616b/" target="_blank">Tung Nguyen</a>
   </div>
 </div>
@@ -182,8 +182,8 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member7.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Cindy K. Pino:</strong> PhD Student, UCSF/UCB/Gladstone Institutes<br>
-    <strong>Role:</strong> Data curation, domain knowledge, model evaluator
-    <a https://www.linkedin.com/in/cindykhris/" target="_blank">Cindy Pino</a>
-  </div>
+    <strong>Role:</strong> Data curation, domain knowledge, model evaluator<br>
+    <a href="https://www.linkedin.com/in/cindykhris/" target="_blank">Cindy Pino</a>
+  </div> 
 </div>
   
