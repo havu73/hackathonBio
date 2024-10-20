@@ -2,6 +2,12 @@
 # Important notes:
 We cloned the method PB-LKS by [Qui et al., 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC10859729/) to apply as baseline approaches to compare Phagebook's model against. To accomodate for batch predictions in which input file is a dataframe of ```bacteria_id```, ```host_ID```, we modified the code to taking the desired input and output format. In particular, we added function ```predict_in_df``` in ```PBLKS/PBLKS_pred.py```. 
 
+We also used snakemake to run PBLKS in batches, ```run_phageScope.snakefile``` and ```run_vikecoli.snakefile```. 
+Below is the content of readme provided by the developer of [PBLKS](https://github.com/wanchunnie/PB-LKS/tree/main) 
+
+```
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
 # PB-LKS
 
 This is the official code for our paper "PB-LKS: a python package for predicting **P**hage-**B**acteria interaction through **L**ocal **K**-mer **S**trategy"
