@@ -1,0 +1,124 @@
+1 Submission requirement
+Users can submit genome sequences of query phages and bacteria to the 'Query_phage' folder and 'Query_bacteria' folder to run the PB-LKS package.
+
+Please note that:
+1) The whole genome sequence of phages and bacteria with accession ID can be downloaded from the National Center of Biotechnology Information (NCBI) with genome sequence (https://www.ncbi.nlm.nih.gov/datasets/genome).
+2) Genome sequences are required in fasta format. If the genome sequences of query phages and bacteria are provided by users, the required sequence format can be referred to the fasta files in the National Center of Biotechnology Information (NCBI) with genome sequence (https://www.ncbi.nlm.nih.gov/datasets/genome).
+
+2 Example
+Example phage: Aeromonas phage phiO18P
+Example bacteria: Escherichia coli STEC_94C
+Path of example phage: Example/Phage_genome.fasta
+Path of example bacteria: Example/Bacteria_genome.fasta
+
+Step 1: Provide the fasta file of query phage and bacterial genome sequence in the 'Example' folder.
+Step 2: Set up local environment.
+	1). install conda(to manage environment)
+	2).  Change directory to the path of this project
+      	    ```bash
+            cd {your_path_to_PBLKS}
+            ```
+	3). Run the following codes in your terminal
+   	    ```bash
+   	    conda create -n PB-LKS python=3.10.2
+   	    conda deactivate
+   	    conda activate PB-LKS
+   	    pip install -r requirements.txt
+   	    ``` 
+Step 3: Run the PB-LKS program.
+	```bash
+	python PB-LKS.py -e
+	```
+Step 4: Output the prediction result.
+>>>
+The prediction result of PB-LKS is: 0. (The queried bacteria is not the host of the query phage.)
+Predicted probability that the bacteria is the host of the phage is: 19.301890441470412%
+The prediction is over.
+>>>
+
+3 Prediction for set of phages against set of bacteria
+
+Step 1: If users would like to predict the interaction between a set of phages and a set of bacteria, all of the fasta files of phages' genome sequences can be moved to the 'Query_phage' folder, and all of the fasta files of bacterial genome sequences can be moved to the 'Query_bacteria' folder
+Step 2: Set up local environment.
+	1). install conda(to manage environment)
+	2).  Change directory to the path of this project
+      	    ```bash
+            cd {your_path_to_PBLKS}
+            ```
+	3). Run the following codes in your terminal
+   	    ```bash
+   	    conda create -n PB-LKS python=3.10.2
+   	    conda deactivate
+   	    conda activate PB-LKS
+   	    pip install -r requirements.txt
+   	    ``` 
+Step 3: Run the PB-LKS program.
+	```bash
+	python PB-LKS.py -p Query_phage -b Query_bacteria -ba -o result
+	```
+Step 4: Acquire prediction result in outputted files of PB-LKS_result.csv and PB-LKS_result.txt.
+	The information of PB-LKS_result.csv refers to intuitive prediction result between each phage and bacteria. "1" represents the query bactrium is predicted as the host of the query phage, and "0" represents the query bactrium is predicted as the nonhost of the query phage.
+	The information of PB-LKS_result.txt refers to detailed prediction result between each phage and bacteria, including bacteria_filename,	phage_filename, predicted_result, predicted_score, defaulted_parameters of PB-LKS, learning model of prediction, and top 10 important features.
+
+#Detailed arguments in the PB-LKS_result.txt are listed as follows:
+
+	Bacteria_filename: Bacteria_genome.fasta	# Filename of query bacteria
+	Phage_filename: Phage_genome.fasta	# Filename of query phage
+	Predicted_result: non-host	#PB-LKS predicts the query bacteria as non-host of query phage
+	Predicted_probability: 19.301890441470412%	#The predict probability of PB-LKS for the query phage and bacteria. 
+	Default_parameters: window_length(9000bp)_and_step_size(1800bp)	#Opitimal parameters of window length and step size that have been testified to split whole genome sequence of phage and bacteria into segments.
+	Learning_model: RandomForest	#The learning model used to construct the PB-LKS program.
+	Important_features(TOP10):{'TTAA': -6.0, 'ATTA': -16.0, 'TTTA': 19.0, 'ATAA': -40.0, 'CGCG': -9.0, 'TAAT': -38.0, 'GTCG': 7.0, 'TAAA': 5.0, 'CCGA': 1.0, 'AAAA': -4.0}	#Ten most important descriptors with feature importance in this prediction process.
+
+4 decision path visualization
+Please note that:
+If more detailed prediction result such as decision paths and scores of important features are required, users can take genome sequences of a pair of phage-bacterium to run the one-to-one PB-LKS program.
+
+Step 1: Provide the fasta files of query phage and bacterial genome sequence in the 'Query_phage' folder and 'Query_bacteria' folder.
+Step 2: Set up local environment.
+	1). install conda(to manage environment)
+	2).  Change directory to the path of this project
+      	    ```bash
+            cd {your_path_to_PBLKS}
+            ```
+	3). Run the following codes in your terminal
+   	    ```bash
+   	    conda create -n PB-LKS python=3.10.2
+   	    conda deactivate
+   	    conda activate PB-LKS
+   	    pip install -r requirements.txt
+   	    ``` 
+Step 3: Run the PB-LKS program.
+	```bash
+	python PB-LKS.py -p Query_phage/phage_name.fasta -b Query_bacteria/bacteria_name.fasta -d
+	```
+Step 4: Output the prediction result.
+
+5 Run PB-LKS based on the XGBoost algorithm
+If users would like to acquire prediction result with the PB-LKS model constructed by XGBoost, the function of XGBoost is provided.
+
+Step 1: Provide the fasta files of query phage and bacterial genome sequence in the 'Query_phage' folder and 'Query_bacteria' folder.
+Step 2: Set up local environment.
+	1). install conda(to manage environment)
+	2).  Change directory to the path of this project
+      	    ```bash
+            cd {your_path_to_PBLKS}
+            ```
+	3). Run the following codes in your terminal
+   	    ```bash
+   	    conda create -n PB-LKS python=3.10.2
+   	    conda deactivate
+   	    conda activate PB-LKS
+   	    pip install -r requirements.txt
+   	    ``` 
+Step 3: Run the PB-LKS program.
+	```bash
+	python PB-LKS.py -p Query_phage/phage_name.fasta -b Query_bacteria/bacteria_name.fasta -xgb
+	```
+Step 4: Output the prediction result.
+>>>
+The prediction of PB-LKS is: 0.
+The queried bacteria is not the host of the queried phage.
+Predicted probability that the bacteria is the host of the phage is: 1.7388826236128807%
+finished predicting.
+>>>

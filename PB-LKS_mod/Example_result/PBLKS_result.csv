@@ -1,0 +1,7 @@
+
+    """1"" represents the query bactrium is predicted as the host of the query phage,""0"" represents the query bactrium is predicted as the nonhost of the query phage",,,,,
+    ,GCA_000009885.1_ASM988v1_genomic.fna,GCA_000011125.1_ASM1112v1_genomic.fna,GCA_000012605.1_ASM1260v1_genomic.fna,GCA_000233815.2_ASM23381v2_genomic.fna,GCA_000314325.1_ASM31432v1_genomic.fna
+NC_027332.txt,1,1,1,0,0
+NC_028675.txt,0,0,1,0,0
+NC_028679.txt,0,0,1,0,0
+NC_028684.txt,0,0,1,0,0
