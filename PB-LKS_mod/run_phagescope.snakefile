@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 import os
-test_prompt='/mnt/efs/fs1/data/metadata/vikecoli/test_prompt.txt'
-phage_fasta='/mnt/efs/fs1/data/raw/vikecoli/phage_fasta/'
-host_fasta='/mnt/efs/fs1/data/raw/vikecoli/host_fasta/'
-output_folder='/mnt/efs/fs1/data/predictions/ha/vikecoli/'
+test_prompt='/mnt/efs/fs1/data/metadata/phageScope/test_prompt.txt'
+phage_fasta='/mnt/efs/fs1/data/raw/phageScope/phage_fasta/'
+host_fasta='/mnt/efs/fs1/data/raw/phageScope/host_fasta/'
+output_folder='/mnt/efs/fs1/data/predictions/ha/phageScope/'
 num_jobs=8
 def break_test_prompt(test_prompt, num_jobs = num_jobs):
     prompt_df = pd.read_csv(test_prompt, sep='\t')
