@@ -129,7 +129,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <div>
     <strong>Ha Vu:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
     <strong>Role: Team Lead,</strong> pipeline construction, feature extraction<br>
-    <a href="https://www.linkedin.com/in/ha-vu-profile/" target="_blank">LinkedIn Profile</a>
+    <a href="https://www.linkedin.com/in/ha-vu-profile/" target="_blank">Ha Vu</a>
   </div>
 </div>
 
