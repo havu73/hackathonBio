@@ -5,7 +5,7 @@
 The input sequence to the Transformer is a concatenation of the bacteria and phage embeddings. Since the sequence length varies between different pairs, we first sum the embeddings within each sequence for both bacteria and phage. After this, we concatenate the summed phage embedding with the summed bacterial embedding. This process allows us to construct a tabular-formatted input suitable for tree-based methods. We explore two popular tree-based models: XGBoost for preliminary exploration and LightGBM for large-scale hyperparameter search.
 
 <div style="text-align: center;">
-    <img src="./model.png" alt="Tree-based model architecture" width="600"/>
+    <img src="./demo.png" alt="Tree-based model architecture" width="600"/>
 </div>
 
 
