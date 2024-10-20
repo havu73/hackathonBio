@@ -146,7 +146,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <img src="figures/Member3.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
     <strong>Boyang Fu:</strong> PhD Student, UCLA<br>
-    <strong>Role:</strong> Model training<br>
+    <strong>Role:</strong> Embedding engineering, Model training<br>
     <a href="https://www.linkedin.com/in/boyang-fu/" target="_blank">Boyang Fu</a>
   </div>
 </div>
