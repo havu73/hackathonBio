@@ -29,7 +29,7 @@ As part of this project, we provide a live tool [demo](https://6b0fbc27cf15dd75e
 # 1. Background & Relevance
 The rise of antibiotic-resistance bacteria is a global health crisis, with the CDC identifying antimicrobial resistance as a major thread [1](https://www.cdc.gov/antimicrobial-resistance/data-research/threats/index.html). As antibiotics lose effectiveness, the need for new therapies has become urgent. Phage therapy, which uses bacteriophages to target and kill bacteria, offers a promising alternative [2](https://pmc.ncbi.nlm.nih.gov/articles/PMC5547374/). However, scaling phage therapy is hindered by the time-consuming and expensive process of matching the right phage to each bacterial strain, requiring extensive lab testing and specialized facilities [3](https://pmc.ncbi.nlm.nih.gov/articles/PMC10747886/). 
 
-Computational tools have begin to streamline this process by predicting phage-host interactions using genome data. **PhageBook** advances this efforts by leveraging experimentally validated datasets and state-of-the-art machine learning models like **EVO**  and **transformers** [4](https://arcinstitute.org/news/blog/evo) [5](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf) to accurately predict phage-bacteria ineractions. This approach significantly reduces the time and cost of developing phage therapies, enabling faster clinical application. The **EVO** model, developed by the **Arc Institute**, is specifically trained on massive datasets that include both bacteriala nd phage seqeunces. EVO is a feep evolutionary model designed to extract seqeunce embeddings from wide array of genomes. 
+Computational tools have begin to streamline this process by predicting phage-host interactions using genome data. **PhageBook** advances this efforts by leveraging experimentally validated datasets and state-of-the-art machine learning models like **EVO**  and **transformers** [4](https://arcinstitute.org/news/blog/evo) [5](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf) to accurately predict phage-bacteria ineractions. This approach significantly reduces the time and cost of developing phage therapies, enabling faster clinical application. The **EVO** model, developed by the **Arc Institute**, is specifically trained on massive datasets that include both bacterial and phage seqeunces. EVO is a feep evolutionary model designed to extract sequences embeddings from wide array of genomes. 
 
 Unlike traditional methods which requires labor-intensive genome annotation to identify potential phage-host matches, **PhageBook** uses readily available genome-wide data. This not only simplifies the process but achives accuracy comparable to expert-driven methods, providing an efficient and accessible solution to fighting antibiotice resistance. 
 
@@ -37,7 +37,7 @@ Unlike traditional methods which requires labor-intensive genome annotation to i
 
 ### 2.1 Data Collection and Processing
 We used several publicly available datasets for phage-host pairs. Key steps in data collection and processing include: 
-Phage and Bacterial Data: We collected four experimentally validated datasets (PhagesDB, Klebsiella, Vibrio, and E. coli) and one with predicted pairs (PhageScope). Brief summary of data curation procedure:
+**Phage and Bacterial Data**: We collected four experimentally validated datasets (PhagesDB, Klebsiella, Vibrio, and E. coli) and one with predicted pairs (PhageScope). Brief summary of data curation procedure:
 
 * For experimental studies of individual species, their in vitro verified interactions were collected from the supplementary tables of the manuscripts ([E. coli](https://doi.org/10.1101/2023.11.22.567924), [Vibrio](https://doi.org/10.1038/s41467-021-27583-z), and [Klebsiella](https://doi.org/10.1038/s41467-024-48675-6)). Phage genome sequence data and bacterial genome sequence data were retrieved from RefSeq and Genbank according to the unique IDs provided by the study authors. In the end, for these datasets, we have pairs between:
      * **E.coli: 325 bacterial hosts and 96 phages**
@@ -67,10 +67,10 @@ All of these models were trained using one V100-16GB GPU on a p3.16xlarge on AWS
 
 ### 3.1 Model Performance
 
-For each dataset (e.g., Klebsiella, Vibrio, and E. coli), our predictions were evaluated against a common set of ground truth datasets, which contained the columns Phage_ID, Host_ID, and prediction to denote positive and negative pairs. 
+For each dataset (e.g., _Klebsiella_, _Vibrio_, and _E. coli_), our predictions were evaluated against a common set of ground truth datasets, which contained the columns Phage_ID, Host_ID, and prediction to denote positive and negative pairs. 
 For the evaluation of our models, we used standard metrics for binary classification tasks, focusing on Precision-Recall Curves (PRC) and Receiver Operating Characteristic (ROC) Curves. The PRC AUC (Area Under the Curve) provided a summary of the precision-recall tradeoff, particularly useful in our unbalanced datasets, with higher values indicating better performance. ROC AUC measured how well the model distinguished between positive and negative classes, with the Chance Line included as a baseline for comparison. We evaluated several models, including XGBoost, CNN, K-mer Baseline, and Transformer, ranking them based on PRC AUC, which was prioritized due to the class imbalance in our data.
 
-Below are the Precision-Recall and ROC curves for each dataset tested. For the Vibrio and E. coli datasets, the Transformer Classifier achieved the highest performance with AUC of 0.97 and 0.87, respectively, followed by KGBoost and CNN. XGBoost achieved the highest AUC of 0.75 for the Klebsiella dataset. We use Precision-Recall as a main metric to pick the best model, because it is less sensitive to the labels imbalance that is a common feature of all our datasets.
+Below are the Precision-Recall and ROC curves for each dataset tested. For the _Vibrio_ and _E. coli_ datasets, the Transformer Classifier achieved the highest performance with AUC of 0.97 and 0.87, respectively, followed by KGBoost and CNN. XGBoost achieved the highest AUC of 0.75 for the _Klebsiella_ dataset. We use Precision-Recall as a main metric to pick the best model, because it is less sensitive to the labels imbalance that is a common feature of all our datasets.
 
 ### E.coli models
 <img align="center" src="figures/ecoli_evaluation.png" alt="Project" width="500">
@@ -107,13 +107,13 @@ In the current training under this model, negative pair examples were chosen to 
 
 ### 4.3 Future Work - EVO and ESM3 models
 
-Our future work will focus on expanding the dataset to include more diverse bacterial species, optimizing the models for faster processing, and finetuning the Evo model to increase its predictive power. Additionally, we aim to expand on our user-friendly interface for broader accessibility.
+Our future work will focus on expanding the dataset to include more diverse bacterial species, optimizing the models for faster processing, and fine-tuning the Evo model to increase its predictive power. Additionally, we aim to expand on our user-friendly interface for broader accessibility.
 
-Building on the success of extracting whole-genome sequence from pahge-host pairs, the next step is to incorporate protein sequence data embeddings. Using the advanced [**ESM3**](https://www.evolutionaryscale.ai/blog/esm3-release) model, a large-scale protein langugage model trained on a vast dataset of protein sequences, will allow us to capture intricate structural and functional information at both residue and sequence levels.
+Building on the success of extracting whole-genome sequence from phage-host pairs, the next step is to incorporate protein sequence data embeddings. Using the advanced [**ESM3**](https://www.evolutionaryscale.ai/blog/esm3-release) model, a large-scale protein langugage model trained on a vast dataset of protein sequences, will allow us to capture intricate structural and functional information at both residue and sequence levels.
 
-Integrating protein sequence sform phage-host pairs with ESM3 will allow us to explore phage-host interactions at a mode granular level, particularly by analysing protein-protein interactions that may drive host specificity and viral infectivity. This will provide deeper insights unto how phages target specific bacteria proteins, potentially revealing new therapeutic targets. 
+Integrating protein sequences from phage-host pairs with ESM3 will allow us to explore phage-host interactions at a mode granular level, particularly by analysing protein-protein interactions that may drive host specificity and viral infectivity. This will provide deeper insights unto how phages target specific bacteria proteins, potentially revealing new therapeutic targets. 
 
-By combining both whole-genome and portein sequence data, we will gain more comprehensive understading of phage-host dynamics. This dual approach will enhance the accuracy of our predictions and expand the versatility of **PhageBook**, allowing it to predict interactions across various biological levels, from genomic signals to proteins mechanisms. This coudl open the door to more precise phage therapises, tailored not just to the bacterial species but to specific protein targets, pushing the boundaries of personalize medicine in the tratment of resistwent infections. 
+By combining both whole-genome and portein sequence data, we will gain more comprehensive understading of phage-host dynamics. This dual approach will enhance the accuracy of our predictions and expand the versatility of **PhageBook**, allowing it to predict interactions across various biological levels, from genomic signals to proteins mechanisms. This could open the door to more precise phage therapises, tailored not just to the bacterial species but to specific protein targets, pushing the boundaries of personalize medicine in the treatment of resistant infections. 
 
 
 # 5. Potential impact
@@ -138,6 +138,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <div>
     <strong>Veronika Dubinkina:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
     <strong>Role:</strong> Data curation and domain knowledge
+    <a href="https://www.linkedin.com/in/veronika-dubinkina/" target="_blank">Veronika Dubinkina</a>
   </div>
 </div>
 
@@ -146,6 +147,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <div>
     <strong>Boyang Fu:</strong> PhD Student, UCLA<br>
     <strong>Role:</strong> Model training
+    <a href="https://www.linkedin.com/in/boyang-fu/" target="_blank">Boyang Fu</a>
   </div>
 </div>
 
@@ -154,6 +156,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <div>
     <strong>Emily Maciejewski:</strong> PhD Student, UCLA<br>
     <strong>Role:</strong> Model training
+    <a href="https://www.linkedin.com/in/emilymaciejewski/" target="_blank">Emily Maciejewski</a>
   </div>
 </div>
 
@@ -162,6 +165,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <div>
     <strong>Khoa Hoang:</strong> PhD Student, Stanford<br>
     <strong>Role:</strong> Model training
+    <a href="https://www.linkedin.com/in/khoa-hoang-babb30172/" target="_blank">Khoa Hoang</a>
   </div>
 </div>
 
@@ -170,6 +174,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <div>
     <strong>Tung Nguyen:</strong> PhD Student, UCLA/Google DeepMind<br>
     <strong>Role:</strong> Infrastructure setup, feature extraction, model training
+    <a href="https://www.linkedin.com/in/tung-nguyen-40703616b/" target="_blank">Tung Nguyen</a>
   </div>
 </div>
 
@@ -178,6 +183,7 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   <div>
     <strong>Cindy K. Pino:</strong> PhD Student, UCSF/UCB/Gladstone Institutes<br>
     <strong>Role:</strong> Data curation, domain knowledge, model evaluator
+    <a https://www.linkedin.com/in/cindykhris/" target="_blank">Cindy Pino</a>
   </div>
 </div>
   
