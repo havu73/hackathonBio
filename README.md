@@ -90,13 +90,16 @@ __Challenges of the contrastive learning model:__ One challenge was the computat
 
 ### 4.2 Conclusions
 
-PhageBook successfully demonstrated the potential of using evolutionary models to predict phage-bacteria host interactions within a universal framework. We want to note that two of the datasets we used in our project ([Klebsiella](https://doi.org/10.1038/s41467-024-48675-6) and [E. coli](https://doi.org/10.1101/2023.11.22.567924)) had an accompanying study which tried to make a predictive model based on the detailed expert domain knowledge. Their approach entailed tedious annotation of genome sequences to finish and characterize genes potentially involved in the phage-host interaction. However, our naive approach that requires only knowledge of the full genome sequence (which is much easier to obtain given the present-day cost of sequencing) reached the same accuracy level, bypassing the need for any additional data curation. Our work provides a foundation for future research into phage therapy as a viable alternative to antibiotics, and the results indicate that integrating larger models like EVO and ESM3 can significantly simplify the process and potentially improve our ability to find a cure for many bacterial infections.
+PhageBook successfully demonstrated the potential of using evolutionary models to predict phage-bacteria host interactions within a universal framework. We want to note that two of the datasets we used in our project ([Klebsiella](https://doi.org/10.1038/s41467-024-48675-6) and [E. coli](https://doi.org/10.1101/2023.11.22.567924)) had an accompanying study which tried to make a predictive model based on the detailed expert domain knowledge. Their approach entailed tedious annotation of genome sequences to finish and characterize genes potentially involved in the phage-host interaction. However, our naive approach that requires only knowledge of the full genome sequence (which is much easier to obtain given the present-day cost of sequencing) reached the same accuracy level, bypassing the need for any additional data curation. 
 
 ### 4.3 Future Work
 
 Our future work will focus on expanding the dataset to include more diverse bacterial species, optimizing the models for faster processing, and finetuning the Evo model to increase its predictive power. Additionally, we aim to develop a user-friendly interface for broader accessibility.
 
 # 5. Potential impact
+
+Our work provides a foundation for future research into phage therapy as a viable alternative to antibiotics, and the results indicate that integrating larger models like EVO and ESM3 can significantly simplify the process and potentially improve our ability to find a cure for many bacterial infections.
+
 # 6. Team Members
 
 **Ha Vu:** Postdoctoral Scholar, Gladstone Institutes
