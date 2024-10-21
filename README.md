@@ -1,4 +1,4 @@
-# PhageBook - BioML Hackathon Project
+# PhageBook - [Bio X ML Hackathon Project](https://hackathon.bio/)
 
 **Team Name:** PhageBook
 
@@ -23,7 +23,7 @@
 6. [Team Members](#6-team-members)
 
 # Abstract
-**PhageBook** is an innovative platform developed during a **10-day hackathon** to address the urgent challenge of antibiotic-resistant bacteria. By leveraging evolutionary models and cutting-edge machine learning techniques, **PhageBook accurately predicts phage-bacteria host interactions**, a crucial step toward designing effective phage therapies. Our models, trained on newly available experimental datasets, achieved impressive results, **with AUC values as high as 0.97**, demonstrating their potential to streamline phage therapy development.
+**PhageBook** is an innovative platform developed during a **10-day** [Bio X ML Hackathon Project](https://hackathon.bio/) to address the urgent challenge of antibiotic-resistant bacteria. By leveraging evolutionary models and cutting-edge machine learning techniques, **PhageBook accurately predicts phage-bacteria host interactions**, a crucial step toward designing effective phage therapies. Our models, trained on newly available experimental datasets, achieved impressive results, **with AUC values as high as 0.97**, demonstrating their potential to streamline phage therapy development.
 
 As part of this project, we provide a live tool [demo](https://0bca511e83b482da4f.gradio.live/), where users can query bacterial strains against a set of phages and identify potential matches. Future versions of the tool will allow users to input clinical bacterial isolate sequences for real-time phage predictions. PhageBook is open-source, and with further optimization, it has the potential to revolutionize the way phage therapies are developed.
 
