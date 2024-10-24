@@ -131,63 +131,63 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px;">
   <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
-    <strong>Ha Vu:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
+    <a href="https://www.linkedin.com/in/ha-vu-profile/" target="_blank"><strong>Ha Vu:</strong></a> Postdoctoral Scholar, Gladstone Institutes<br>
     <strong>Role: Team Lead,</strong> pipeline construction, feature extraction<br>
-    <a href="https://www.linkedin.com/in/ha-vu-profile/" target="_blank">Ha Vu</a>
+    
   </div>
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
   <img src="figures/Member2.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
-    <strong>Veronika Dubinkina:</strong> Postdoctoral Scholar, Gladstone Institutes<br>
+    <a href="https://www.linkedin.com/in/veronika-dubinkina/" target="_blank"><strong>Veronika Dubinkina:</strong></a> Postdoctoral Scholar, Gladstone Institutes<br>
     <strong>Role:</strong> Data curation and domain knowledge<br>
-    <a href="https://www.linkedin.com/in/veronika-dubinkina/" target="_blank">Veronika Dubinkina</a>
+    
   </div>
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
   <img src="figures/Member3.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
-    <strong>Boyang Fu:</strong> PhD Student, UCLA<br>
+    <a href="https://www.linkedin.com/in/boyang-fu/" target="_blank"><strong>Boyang Fu:</strong></a> PhD Student, UCLA<br>
     <strong>Role:</strong> Embedding engineering, model training<br>
-    <a href="https://www.linkedin.com/in/boyang-fu/" target="_blank">Boyang Fu</a>
+    
   </div>
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
   <img src="figures/Member4.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
-    <strong>Emily Maciejewski:</strong> PhD Student, UCLA<br>
+    <a href="https://www.linkedin.com/in/emilymaciejewski/" target="_blank"><strong>Emily Maciejewski:</strong></a> PhD Student, UCLA<br>
     <strong>Role:</strong> Model training<br>
-    <a href="https://www.linkedin.com/in/emilymaciejewski/" target="_blank">Emily Maciejewski</a>
+    
   </div>
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
   <img src="figures/Member5.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
-    <strong>Khoa Hoang:</strong> PhD Student, Stanford<br>
+    <a href="https://www.linkedin.com/in/khoa-hoang-babb30172/" target="_blank"><strong>Khoa Hoang:</strong></a> PhD Student, Stanford<br>
     <strong>Role:</strong> Model training<br>
-    <a href="https://www.linkedin.com/in/khoa-hoang-babb30172/" target="_blank">Khoa Hoang</a>
+    
   </div>
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
   <img src="figures/Member6.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
-    <strong>Tung Nguyen:</strong> PhD Student, UCLA/Google DeepMind<br>
+    <a href="https://www.linkedin.com/in/tung-nguyen-40703616b/" target="_blank"><strong>Tung Nguyen:</strong></a> PhD Student, UCLA/Google DeepMind<br>
     <strong>Role:</strong> Infrastructure setup, feature extraction, model training<br>
-    <a href="https://www.linkedin.com/in/tung-nguyen-40703616b/" target="_blank">Tung Nguyen</a>
+    
   </div>
 </div>
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px; max-width: 200px;">
   <img src="figures/Member7.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
   <div>
-    <strong>Cindy K. Pino:</strong> PhD Student, UCSF/UCB/Gladstone Institutes<br>
+    <a href="https://www.linkedin.com/in/cindykhris/" target="_blank"><strong>Cindy K. Pino:</strong></a> PhD Student, UCSF/UCB/Gladstone Institutes<br>
     <strong>Role:</strong> Data curation, domain knowledge, model evaluator<br>
-    <a href="https://www.linkedin.com/in/cindykhris/" target="_blank">Cindy Pino</a>
+    
   </div> 
 </div>
   
