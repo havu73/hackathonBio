@@ -126,7 +126,18 @@ By combining both whole-genome and portein sequence data, we will gain more comp
 
 The scalability of **PhageBook** makes it suitable for both large-scale applications and personalized medicine, where it can be adapted to target specific bacterial strains in clinical settings. By enabling rapid phage therapy develpments, **PhageBook** can help combat the growing thread of multidrug-resistant bacteria, potentially saving countless lives and extending the efficacy of existing treatments. As antibiotics become less effective, **PhageBook** offers a vital tool to ensure we stay ahead in the battle againsts superbugs. 
 
-# 6. Team Members
+# 6. Citation and Team Members
+
+When using one of the models implemented in this repo in your work, please cite:
+```
+@misc{phagebook2024,
+  title        = {Phagebook - Bio X ML Hackathon Project},
+  author       = {Vu, Ha, Dubinkina, Veronika, Fu, Boyang, Maciejewski, Emily, Hoang, Khoa, Nguyen, Tung, Pino, Cindy},
+  month        = {October},
+  year         = {2024},
+  howpublished = {\url{https://github.com/havu73/hackathonBio}}
+}
+```
 
 <div style="display: flex; align-items: center; border: 1px solid black; padding: 10px;">
   <img src="figures/Member1.png" alt="Member 1" style="width: 100px; height: auto; margin-right: 20px;">
@@ -191,15 +202,4 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   </div> 
 </div>
   
- ## Cite
 
-When using one of the models implemented in this repo in academic work please cite:
-```
-@misc{phagebook2024,
-  title        = {Phagebook - Bio X ML Hackathon Project},
-  author       = {Vu, Ha, Dubinkina, Veronika, Fu, Boyang, Maciejewski, Emily, Hoang, Khoa, Nguyen, Tung, Pino, Cindy},
-  month        = {October},
-  year         = {2024},
-  howpublished = {\url{https://github.com/havu73/hackathonBio}}
-}
-```
