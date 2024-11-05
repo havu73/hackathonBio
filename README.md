@@ -191,3 +191,15 @@ The scalability of **PhageBook** makes it suitable for both large-scale applicat
   </div> 
 </div>
   
+ ## Cite
+
+When using one of the models implemented in this repo in academic work please cite:
+```
+@misc{phagebook2024,
+  title        = {Phagebook - Bio X ML Hackathon Project},
+  author       = {Vu, Ha, Dubinkina, Veronika, Fu, Boyang, Maciejewski, Emily, Hoang, Khoa, Nguyen, Tung, Pino, Cindy},
+  month        = {October},
+  year         = {2024},
+  howpublished = {\url{https://github.com/havu73/hackathonBio}}
+}
+```
