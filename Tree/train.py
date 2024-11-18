@@ -7,30 +7,108 @@ from sklearn.metrics import make_scorer, average_precision_score, roc_auc_score
 import matplotlib.pyplot as plt
 from time import time
 import os
-import umap
 import numpy as np
 import pandas as pd
 import random
 from sklearn.cluster import KMeans
+from torch.optim.optimizer import required
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,log_loss
 import lightgbm as lgb
 import argparse
-
-
+import glob
+import itertools
 def parse_arguments():
     """Function to parse command line arguments."""
     parser = argparse.ArgumentParser(description="Simple calculator using argparse")
     
     # Add arguments
-    parser.add_argument('--negative_fold', type=int, default=10, help="positive/negative pair ratio")
-    parser.add_argument('--data', type=str, help="input")
-    parser.add_argument('--embeddingPath', type=str, default='/mnt/efs/fs1/data/embeddings')
-    parser.add_argument('--metaPath', type=str, default='/mnt/efs/fs1/data/metadata')
-
+    parser.add_argument('--negative_fold', type=int, default=10, help="negative/positive pair ratio")
+    parser.add_argument('--phage_embed', type=str, default='phage_embeddings', help="path to phage embeddings folder")
+    parser.add_argument('--host_embed', type=str, default='host_embeddings', help="path to host embeddings folder")
+    parser.add_argument('--train_positive_fn', type=str, default='train_positive_pairs.txt', help="path to positive pairs")
+    parser.add_argument('--train_negative_fn', type=str, default=None, help="path to negative pairs")
+    parser.add_argument('--save_fn', type=str, required=True, help="path to save the model")
     # Parse the arguments and return them
     return parser.parse_args()
+
+def process_dict_embed(embed_folder):
+    '''
+    Given a folder of embeddings, <phage/bacteria_ID>.pt files, return a dictionary of embeddings
+    key: <phage/bacteria_ID>,
+    value: embedding tensor
+    '''
+    embed_dict = {}
+    for embed_fn in glob.glob(f'{embed_folder}/*.pt'):
+        embed_id = embed_fn.split('/')[-1].split('.pt')[0]
+        embed_dict[embed_id] = torch.load(f'{embed_fn}').sum(dim=0,keepdim=True)
+    return embed_dict
+
+
+def generate_negative_pairs(post_df= None, post_fn = None, N = 100):
+    '''
+    Given a DataFrame of positive pairs, generate N negative pairs.
+    Negative pairs are pairs where phage and host are each present in the input dataframe, but the pair phage-host itself is not present.
+    '''
+    if post_df is None and post_fn is None:
+        raise ValueError("Either post_df or post_fn should be provided.")
+    if post_df is None:
+        post_df = pd.read_csv(post_fn, sep='\t', header = 0, index_col = None)
+    # Extract unique phages and hosts
+    phages = post_df['Phage_ID'].unique()
+    hosts = post_df['Host_ID'].unique()
+    # Generate all possible pairs of phage and host
+    all_possible_pairs = set(itertools.product(phages, hosts))
+    # Convert positive pairs to a set of tuples
+    positive_pairs = set(zip(post_df['Phage_ID'], post_df['Host_ID']))
+    # Get negative pairs by subtracting positive pairs from all possible pairs
+    negative_pairs = list(all_possible_pairs - positive_pairs)
+    # Randomly sample N negative pairs
+    if N > len(negative_pairs):
+        N = len(negative_pairs)
+    print(f"Number of possible negative pairs: {len(negative_pairs)}")
+    sampled_negative_pairs = random.sample(negative_pairs, N)
+    # Convert to DataFrame if desired
+    negative_df = pd.DataFrame(sampled_negative_pairs, columns=['Phage_ID', 'Host_ID'])
+    return negative_df
+
+def filter_only_present_pairs(post_fn, phage_emb_dict=None, host_emb_dict=None):
+    '''
+    Given a DataFrame of pairs, filter out pairs where either phage or host is not present in the embeddings folder.
+    '''
+    post_df = pd.read_csv(post_fn, sep='\t', header = 0, index_col = None)
+    phages = post_df['Phage_ID'].unique()
+    hosts = post_df['Host_ID'].unique()
+    if phage_emb_dict is not None:
+        phages = phage_emb_dict.keys()
+    if host_emb_dict is not None:
+        hosts = host_emb_dict.keys()
+    post_df = post_df[(post_df['Phage_ID'].isin(phages)) & (post_df['Host_ID'].isin(hosts))]
+    return post_df
+
+def prepare_training_data(phage_emb_dict, host_emb_dict, post_df, neg_df):
+    '''
+    the training data includes:
+    - embeddings: for each pair of phage, host, (phgee_embed, host_embed) concatenated
+    - labels: 1 for positive pairs, 0 for negative pairs
+    '''
+    embeddings = []
+    post_df['label'] = 1
+    neg_df['label'] = 0
+    comb_df = pd.concat([post_df, neg_df], axis=0)
+    comb_df.reset_index(drop=True, inplace=True)
+    for i in range(comb_df.shape[0]):
+        # import pdb; pdb.set_trace()
+        phage_id = comb_df.iloc[i].Phage_ID
+        host_id = comb_df.iloc[i].Host_ID
+        phage_embed = phage_emb_dict[phage_id]
+        host_embed = host_emb_dict[host_id]
+        pair_embed = torch.cat((phage_embed, host_embed), dim=1)
+        embeddings.append(pair_embed)
+    labels = comb_df['label'].values
+    embeddings = torch.cat(embeddings, axis=0)
+    return embeddings, labels
 
 if __name__ == '__main__':
     torch.manual_seed(123)
@@ -38,137 +116,29 @@ if __name__ == '__main__':
     
     args = parse_arguments()
 
-    embeddingPath=args.embeddingPath
-    metaPath=args.metaPath
-    negative_fold=args.negative_fold
-    # datanames = ['vibrio']
-    # datanames = [args.data]
-    dataname = args.data
-    phage_list = None
-    host_list = None
-    
-    test_prompt=pd.read_csv(f"{metaPath}/{dataname}/test_prompt.txt",sep="\t")
+    phage_list =glob.glob(f'{args.phage_embed}/*.pt')
+    host_list = glob.glob(f'{args.host_embed}/*.pt')
+    phage_list = list(map(lambda x: x.split('/')[-1].split('.pt')[0], phage_list))
+    host_list = list(map(lambda x: x.split('/')[-1].split('.pt')[0], host_list))
 
-    exec(f'{dataname}_phage_emb_path="{embeddingPath}/{dataname}_embeddings/phage_embeddings/"')
-    exec(f'{dataname}_host_emb_path="{embeddingPath}/{dataname}_embeddings/host_embeddings/"')
-    
-    exec(f'{dataname}_phage_list=os.listdir({dataname}_phage_emb_path)')
-    exec(f'{dataname}_host_list=os.listdir({dataname}_host_emb_path)')
-    
-    exec(f'{dataname}_meta_df=pd.read_csv("{metaPath}/{dataname}/train_positive_pairs.txt",sep="\t")')
-    
-    if phage_list is None:
-        phage_list=eval(f'{dataname}_phage_list')
-        host_list=eval(f'{dataname}_host_list')
+    phage_emb_dict = process_dict_embed(args.phage_embed)  # key: <phage_ID>, value: embedding tensor
+    host_emb_dict = process_dict_embed(args.host_embed)     # key: <host_ID>, value: embedding tensor
+    print('Done reading the embeddings')
+    # Load positive pairs
+    post_df = filter_only_present_pairs(args.train_positive_fn, phage_emb_dict, host_emb_dict)
+    print('Done filtering the positive pairs')
+    # Generate negative pairs
+    if args.train_negative_fn is not None:
+        neg_df = filter_only_present_pairs(args.train_negative_fn, phage_emb_dict, host_emb_dict)
     else:
-        phage_list = phage_list.extend(eval(f'{dataname}_phage_list'))
-        host_list = host_list.extend(eval(f'{dataname}_host_list'))
-
-    ############## concatenate the summation embeddings  ##############
-    #%%
-
-    print(f'start collecting positive pairs...')
-    positive_pair_embeddings = []
-    indicators = []
-  
-    missing=0
-# for dataname in ['phageDB']:
-    for i in range(eval(f'{dataname}_meta_df').shape[0]):
-        entry=eval(f'{dataname}_meta_df').iloc[i]
-        phage_id = entry.Phage_ID
-        if dataname=='phageDB':
-            phage_id=f'phageDB{phage_id}'
-        bact_id = entry.Host_ID
-        try:
-            phage_emb_path=eval(f'{dataname}_phage_emb_path')
-            host_emb_path=eval(f'{dataname}_host_emb_path')
-            evo_phage_embedding = torch.load(f'{phage_emb_path}/{phage_id}.pt').sum(dim=0,keepdim=True)
-            evo_host_embedding = torch.load(f'{host_emb_path}/{bact_id}.pt').sum(dim=0,keepdim=True)
-            positive_pair_embedding = torch.cat((evo_phage_embedding,evo_host_embedding),dim=1)
-            positive_pair_embeddings.append(positive_pair_embedding)
-            indicators.append(True)
-        except Exception as e:
-            missing += 1
-            # print(e)
-            continue
-    print(f'finish collecting {dataname}, with {len(positive_pair_embeddings)} positive embeddings in total, miss {missing}')
-
-    positive_pair_embeddings = torch.cat(positive_pair_embeddings,axis=0)# %%
-    random_pair_embeddings = []
-
-    Npos=positive_pair_embeddings.shape[0]
-
-    missing=0
-    
-    if Npos > 1000:
-        negative_fold = 5
-    # print(test_prompt)
-    for i in range(Npos*negative_fold):
-        ##### if use meta train pair only #####
-        # random_phage_int = random.randint(0, Npos-1)
-        # random_bact_int = random.randint(0, Npos-1)
-        # if random_phage_int == random_bact_int:
-        #     ## false negative
-        #     continue
-        
-        # phage_id = eval(f'{dataname}_meta_df').iloc[random_phage_int].Phage_ID
-        # bact_id = eval(f'{dataname}_meta_df').iloc[random_bact_int].Host_ID
-        # phage_id = f'{phage_id}.pt'
-        # if dataname=='phageDB':
-        #     phage_id=f'phageDB{phage_id}'
-        # bact_id = f'{bact_id}.pt'
-        ##### if use meta train pair only #####
-        
-        ##### if use all random pairs #####
-        random_phage_int = random.randint(0, len(phage_list)-1)
-        random_bact_int = random.randint(0, len(host_list)-1)
-        
-        phage_id = phage_list[random_phage_int]
-        bact_id = host_list[random_bact_int]
-        # print(f'phage_id: {phage_id[:-2]} -- bact_id: {bact_id[:-2]}')
-        
-        condition =((test_prompt['Phage_ID']==phage_id[:-3])&(test_prompt['Host_ID']==bact_id[:-3]))
-        if np.sum(condition)>0: ### present in testing data
-            continue
-        # phage_id = eval(f'{dataname}_meta_df').iloc[random_phage_int].Phage_ID
-        # bact_id = eval(f'{dataname}_meta_df').iloc[random_bact_int].Host_ID
-        ##### if use all random pairs #####
-        
-        
-        phage_emb_path=eval(f'{dataname}_phage_emb_path')
-        host_emb_path=eval(f'{dataname}_host_emb_path')
-        try:
-            evo_phage_embedding = torch.load(f'{phage_emb_path}/{phage_id}').sum(dim=0,keepdim=True)
-            evo_host_embedding = torch.load(f'{host_emb_path}/{bact_id}').sum(dim=0,keepdim=True)
-        except Exception as e:
-            # print(e)
-            # print(f'error loading {phage_emb_path}/{phage_id}')
-            missing += 1
-            continue
-    
-        random_pair_embedding = torch.cat((evo_phage_embedding,evo_host_embedding),dim=1)
-        random_pair_embeddings.append(random_pair_embedding)
-        indicators.append(False)
-        
-    random_pair_embeddings = torch.cat(random_pair_embeddings,axis=0)
-    print(f'finish generating random pairs as negative control, with {len(random_pair_embeddings)} negative embeddings in total, miss {missing}')
-
-    pc_ncomp=100
-    n_neighbors=50
-
-    ## How many negative pairs use for training purpose
-    train_neg_portion=positive_pair_embeddings.shape[0]
-
-
-    combined_pair_embeddings = torch.cat((positive_pair_embeddings,random_pair_embeddings),axis=0)
-
-    indicators=np.array(indicators)
-    # indicators_train = indicators[:2*train_neg_portion]
-    # assert combined_pair_embeddings_train.shape[0]==indicators_train.shape[0],f'X train shape: {combined_pair_embeddings_train.shape}; y train shape: {indicators_train.shape}'
-
-
-    scale_pos_weight = 1./np.mean(indicators)
+        neg_df = generate_negative_pairs(post_df=post_df, N = len(post_df)*args.negative_fold)
+    print('Done generating the negative pairs')
+    # Prepare training data
+    embeddings, labels = prepare_training_data(phage_emb_dict, host_emb_dict, post_df, neg_df)  # embeddings: (N, 8192), labels: (N,) where N is the number of pairs
+    print('Done preparing the training data')
+    scale_pos_weight = 1./np.mean(labels)
     print(f'scale_pos_weight is {scale_pos_weight}')
+    # specify hyperparameters to be searched for
     param_grid = {
         'n_estimators': [50, 100, 200],
         'num_leaves': [31, 63, 127],
@@ -178,38 +148,26 @@ if __name__ == '__main__':
         'learning_rate': [0.05, 0.1, 0.5],
         'scale_pos_weight': [scale_pos_weight/2, scale_pos_weight, scale_pos_weight*2],
     }
-    
+
     # param_grid = {
-    #     'n_estimators': [100],
-    #     'max_depth': [5],
-    #     'learning_rate': [0.5],
-    #     'scale_pos_weight': [scale_pos_weight],
-    #     'gamma': [0]
+    #     'n_estimators': [50],
+    #     'num_leaves': [31],
+    #     'max_depth': [3],
+    #     'subsample': [0.8],
+    #     'colsample_bytree': [0.8],
+    #     'learning_rate': [0.05],
+    #     'scale_pos_weight': [scale_pos_weight/2],
     # }
-
-
-
-    
-    
-    
-    # bst = XGBClassifier(objective='binary:logistic',scale_pos_weight=scale_pos_weight,n_estimators=100,max_depth=5)
-    # bst.fit(combined_pair_embeddings, indicators)
-                        # tree_method='hist',
-                        # device='cuda' )
-                        
-                        
-    # bst = XGBClassifier(objective='binary:logistic')
     bst = lgb.LGBMClassifier(objective='binary', boosting_type='gbdt')
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     scorer = make_scorer(log_loss, greater_is_better=False, needs_proba=True)
-    # scorer = make_scorer(roc_auc_score, greater_is_better=True, needs_proba=True)
     # Perform RandomizedSearchCV
     random_search = RandomizedSearchCV(
         estimator=bst,
         param_distributions=param_grid,
         scoring=scorer,
         cv=cv,
-        n_iter=10,  # Number of hyperparameter combinations to try
+        n_iter=10,
         verbose=0,
         n_jobs=5,  
         random_state=42
@@ -217,7 +175,7 @@ if __name__ == '__main__':
     # fit model
 
     start_time = time()
-    random_search.fit(combined_pair_embeddings, indicators)
+    random_search.fit(embeddings, labels)
     bst = random_search.best_estimator_
     end_time = time()
     
@@ -226,38 +184,7 @@ if __name__ == '__main__':
     seconds = int(time_taken % 60)
     print(f"Time taken for RandomizedSearchCV: {minutes} minutes and {seconds} seconds")
     
-
-    #### Testing part #####
-    
-    test_embeddings = []
-    prediction = np.full(test_prompt.shape[0], np.nan)
-    missing=0
-    for i in range(test_prompt.shape[0]):
-        entry=test_prompt.iloc[i]
-        phage_id = entry.Phage_ID
-        if dataname=='phageDB':
-            phage_id=f'phageDB{phage_id}'
-        bact_id = entry.Host_ID
-        
-        phage_emb_path = globals().get(f'{dataname}_phage_emb_path', None)
-        host_emb_path = globals().get(f'{dataname}_host_emb_path', None)
-        # phage_emb_path=eval(f'{dataname}_phage_emb_path')
-        # host_emb_path=eval(f'{dataname}_host_emb_path')
-        try:
-            evo_phage_embedding = torch.load(f'{phage_emb_path}/{phage_id}.pt').sum(dim=0,keepdim=True)
-            evo_host_embedding = torch.load(f'{host_emb_path}/{bact_id}.pt').sum(dim=0,keepdim=True)
-        except:
-            missing += 1
-            continue
-        
-        test_embedding = torch.cat((evo_phage_embedding,evo_host_embedding),dim=1)
-        prediction[i]=bst.predict_proba(test_embedding)[0, 1] 
-        # test_embeddings.append(test_embedding)
-        
-    # test_embeddings = torch.cat(test_embeddings,axis=0)
-    
-    # preds_proba = bst.predict_proba(test_embeddings)[:, 1] 
-    print(f'testing data miss {missing} embeddings')
-    test_prompt['prediction']=prediction
-    test_prompt.to_csv(f'/home/ec2-user/users/boyang/explore/lightgbm/predict/{dataname}.boyang.predict',sep='\t',index=None)
-
+    # save the model
+    bst.booster_.save_model(args.save_fn)
+    print(f"Model saved to {args.save_fn}")
+    print("Done")
