@@ -10,10 +10,12 @@ class TransformerClassifier(nn.Module):
         num_heads,
         num_layers,
         dim_feedforward,
+        use_pos_encodings=True,
         dropout=0.1,
         max_len=1000
     ):
         super(TransformerClassifier, self).__init__()
+        self.use_pos_encodings = use_pos_encodings
         
         # self.embedding = nn.Linear(input_dim, model_dim)
         self.embedding = nn.Sequential(
@@ -22,8 +24,9 @@ class TransformerClassifier(nn.Module):
             nn.Linear(model_dim, model_dim)
         )
         
-        self.host_pos_encoder = PositionalEncoding(model_dim, max_len)
-        self.phage_pos_encoder = PositionalEncoding(model_dim, max_len)
+        if self.use_pos_encodings:
+            self.host_pos_encoder = PositionalEncoding(model_dim, max_len)
+            self.phage_pos_encoder = PositionalEncoding(model_dim, max_len)
         
         encoder_layer = nn.TransformerEncoderLayer(
             d_model=model_dim,
@@ -45,10 +48,6 @@ class TransformerClassifier(nn.Module):
             nn.Linear(model_dim, 1)
         )
 
-        # initialize weights
-        self.attention_weights = []
-
-
         
     def forward(self, sequences, host_len, phage_len):
         # sequences: BxLxD, host_len: B, phage_len: B
@@ -61,7 +60,8 @@ class TransformerClassifier(nn.Module):
         x = self.embedding(sequences)
         
         # Add separate positional encodings for host and phage
-        x = self.add_separate_positional_encodings(x, host_len, phage_len)
+        if self.use_pos_encodings:
+            x = self.add_separate_positional_encodings(x, host_len, phage_len)
         
         # Apply transformer encoder
         x = self.transformer_encoder(x, src_key_padding_mask=padding_mask)

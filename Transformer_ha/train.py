@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import wandb
 from tqdm import tqdm
 from dataset import PairDataset, create_dataloaders, BalancedBatchSampler
-from modelW import TransformerClassifier
+from model import TransformerClassifier
 from lr_scheduler import LinearWarmupCosineAnnealingLR
 
 
@@ -101,6 +101,7 @@ def main(args):
         num_heads=args.num_heads,
         num_layers=args.num_layers,
         dim_feedforward=args.dim_feedforward,
+        use_pos_encodings=args.use_pos_enc,
         dropout=args.dropout,
         max_len=args.max_len
     ).to(device)
@@ -181,7 +182,6 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train Transformer Classifier")
-    parser.add_argument('--negative_fold', type=int, default=10, help="negative/positive pair ratio")
     parser.add_argument('--phage_embed', type=str, default='phage_embeddings', help="path to phage embeddings folder")
     parser.add_argument('--host_embed', type=str, default='host_embeddings', help="path to host embeddings folder")
     parser.add_argument('--train_positive_fn', type=str, default='train_positive_pairs.txt',
@@ -191,6 +191,7 @@ if __name__ == "__main__":
     parser.add_argument("--negative_pairs_ratio", type=int, default=-1, help="Ratio of negative to positive pairs. If -1 then all negative pairs are sampled from during model training.")
     parser.add_argument("--train_ratio", type=int, default=0.8, help="Ratio of training data")
     parser.add_argument("--max_len", type=int, default=200, help="Maximum sequence length")
+    parser.add_argument("--use_pos_enc", action="store_true", help="Use positional encoding")
     parser.add_argument("--input_dim", type=int, default=4096, help="Input dimension")
     parser.add_argument("--model_dim", type=int, default=1024, help="Model dimension")
     parser.add_argument("--num_heads", type=int, default=8, help="Number of attention heads")
